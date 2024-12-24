@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -118,7 +119,7 @@ fun SearchCard(weather: WeatherObject?, onClick: KSuspendFunction0<Unit>) {
 
                 )
                 Text(
-                    text = weather.current?.temp_f.toString(),
+                    text = weather.current?.temp_f?.toInt().toString()+"°",
                     fontSize = 48.sp,
                     style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold)
                 )
@@ -153,15 +154,19 @@ fun HomeCard(weather: WeatherObject?) {
             contentDescription = null,
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
-                .padding(top =12.dp)
+                .padding(top = 12.dp)
                 .size(200.dp)
         )
+        Row(){
+            Text(
+                text = weather?.location?.name.toString(),
+                style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold)
+            )
+            Icon(Icons.Filled.PlayArrow, "")
+        }
+
         Text(
-            text = weather?.location?.name.toString(),
-            style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold)
-        )
-        Text(
-            text = weather?.current?.temp_f.toString() +"°",
+            text = weather?.current?.temp_f?.toInt().toString() +"°",
             style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold)
         )
     }
@@ -171,8 +176,8 @@ fun HomeCard(weather: WeatherObject?) {
             .padding(24.dp)
             .background(MaterialTheme.colorScheme.onPrimary, shape = RoundedCornerShape(8.dp))) {
         HomeFooterItems("Humidity", weather?.current?.humidity.toString() +"%")
-        HomeFooterItems("UV", weather?.current?.uv.toString())
-        HomeFooterItems("Feels Like", weather?.current?.feelslike_f.toString() + "°")
+        HomeFooterItems("UV", weather?.current?.uv?.toInt().toString())
+        HomeFooterItems("Feels Like", weather?.current?.feelslike_f?.toInt().toString() + "°")
     }
 
 
