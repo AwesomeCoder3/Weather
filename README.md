@@ -16,6 +16,6 @@ Below is an example of how you can installing and set up your app.
     git clone https://github.com/AwesomeCoder3/Weather.git
 
 
-(back to top)
 Usage
+
  Start by searching for a place in the search Box, If an item shows up click on the item to see it on the home screen.
